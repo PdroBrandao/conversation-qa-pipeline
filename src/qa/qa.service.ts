@@ -4,7 +4,7 @@ import { zodResponseFormat } from 'openai/helpers/zod';
 import * as fs from 'fs';
 import * as path from 'path';
 import { randomUUID } from 'crypto';
-import { QaOutputSchema, QaOutput } from './qa.schema';
+import { QaLlmOutputSchema, QaOutput } from './qa.schema';
 import { SYSTEM_PROMPT, buildUserPrompt } from './qa.prompt';
 
 export interface ConversationInput {
@@ -17,6 +17,26 @@ export interface QaRecord extends QaOutput {
   sessionId: string;
   evaluatedAt: string;
   messageCount: number;
+}
+
+const SCORE_WEIGHTS = {
+  qualificacaoLead: 0.20,
+  adequacaoRecomendacao: 0.20,
+  conducaoConversao: 0.20,
+  gestaoObjecoes: 0.15,
+  clarezaComunicacao: 0.15,
+  consistenciaContexto: 0.10,
+} as const;
+
+function calcScoreGeral(parsed: QaOutput): number {
+  const raw =
+    parsed.qualificacaoLead.score * SCORE_WEIGHTS.qualificacaoLead +
+    parsed.adequacaoRecomendacao.score * SCORE_WEIGHTS.adequacaoRecomendacao +
+    parsed.conducaoConversao.score * SCORE_WEIGHTS.conducaoConversao +
+    parsed.gestaoObjecoes.score * SCORE_WEIGHTS.gestaoObjecoes +
+    parsed.clarezaComunicacao.score * SCORE_WEIGHTS.clarezaComunicacao +
+    parsed.consistenciaContexto.score * SCORE_WEIGHTS.consistenciaContexto;
+  return Math.round(raw * 10) / 10;
 }
 
 @Injectable()
@@ -49,9 +69,13 @@ export class QaService {
   }
 
   async evaluate(input: ConversationInput): Promise<QaRecord> {
-    const sessionId = input.sessionId ?? `S_${randomUUID().replace(/-/g, '').slice(0, 8)}`;
+    const sessionId =
+      input.sessionId ??
+      `S_${randomUUID().replace(/-/g, '').slice(0, 8)}`;
 
-    this.logger.log(`Evaluating session ${sessionId} — ${input.messages.length} messages`);
+    this.logger.log(
+      `Evaluating session ${sessionId} — ${input.messages.length} messages`,
+    );
 
     const completion = await this.client.beta.chat.completions.parse({
       model: this.model,
@@ -59,15 +83,20 @@ export class QaService {
         { role: 'system', content: SYSTEM_PROMPT },
         { role: 'user', content: buildUserPrompt(sessionId, input.messages) },
       ],
-      response_format: zodResponseFormat(QaOutputSchema, 'qa_evaluation'),
+      response_format: zodResponseFormat(QaLlmOutputSchema, 'qa_evaluation'),
       temperature: 0,
     });
 
     const parsed = completion.choices[0].message.parsed;
 
     if (!parsed) {
-      throw new Error(`Model returned null or refused to parse for session ${sessionId}`);
+      throw new Error(
+        `Model returned null or refused to parse for session ${sessionId}`,
+      );
     }
+
+    // scoreGeral is calculated here — not delegated to the LLM
+    const scoreGeral = calcScoreGeral(parsed as QaOutput);
 
     const record: QaRecord = {
       recordId: randomUUID(),
@@ -75,6 +104,7 @@ export class QaService {
       evaluatedAt: new Date().toISOString(),
       messageCount: input.messages.length,
       ...parsed,
+      scoreGeral,
     };
 
     this.persist(record);
@@ -96,6 +126,10 @@ export class QaService {
     }
 
     records.push(record);
-    fs.writeFileSync(this.outputPath, JSON.stringify(records, null, 2), 'utf-8');
+    fs.writeFileSync(
+      this.outputPath,
+      JSON.stringify(records, null, 2),
+      'utf-8',
+    );
   }
 }

@@ -1,76 +1,81 @@
 import { z } from 'zod';
 
+export const EvidenciaSchema = z.object({
+  messageIndex: z
+    .number()
+    .int()
+    .min(1)
+    .describe('1-based index of the message in the conversation (matches the [N] label in the user prompt)'),
+  speaker: z
+    .enum(['human', 'ai'])
+    .describe('Who sent the message: "human" for the lead, "ai" for Beatriz'),
+  trecho: z
+    .string()
+    .describe('Exact quote or close paraphrase of the relevant part of the message'),
+});
+
+export type Evidencia = z.infer<typeof EvidenciaSchema>;
+
 export const DimensionSchema = z.object({
   score: z
     .number()
     .min(0)
     .max(10)
-    .describe('Score de 0 a 10 para esta dimensão'),
+    .describe('Score from 0 to 10 for this dimension'),
   justificativa: z
     .string()
-    .describe('Explicação objetiva do score, com base nos fatos da conversa'),
+    .describe('Objective explanation of the score, grounded in facts from the conversation'),
   evidencias: z
-    .array(z.string())
-    .describe(
-      'Trechos ou paráfrases da conversa que sustentam a justificativa',
-    ),
+    .array(EvidenciaSchema)
+    .min(1)
+    .describe('Structured references to specific messages that support the justification'),
 });
 
-export const QaOutputSchema = z.object({
+export type Dimension = z.infer<typeof DimensionSchema>;
+
+// Schema sent to the LLM — does NOT include scoreGeral (calculated in code)
+export const QaLlmOutputSchema = z.object({
   qualificacaoLead: DimensionSchema.describe(
-    'Qualidade na identificação do perfil, histórico, objetivos e necessidades do cliente antes de recomendar qualquer curso.',
+    'Quality of needs discovery before recommending any course.',
   ),
   adequacaoRecomendacao: DimensionSchema.describe(
-    'Pertinência das recomendações de curso ao perfil e aos objetivos declarados pelo cliente. Avalia se o agente apresentou o curso certo para a pessoa certa.',
+    'Fit between the recommended course(s) and the lead\'s stated profile and objectives.',
   ),
   conducaoConversao: DimensionSchema.describe(
-    'Efetividade na condução do cliente em direção a um próximo passo concreto: matrícula, transferência para especialista ou agendamento.',
+    'Effectiveness guiding the lead toward a concrete next step: enrollment, specialist transfer, or scheduling.',
   ),
   gestaoObjecoes: DimensionSchema.describe(
-    'Qualidade no tratamento de dúvidas, resistências e objeções — especialmente perguntas sobre preço, prazo e comparação entre cursos.',
+    'Quality of handling doubts, resistance, and objections — especially price questions, repeated requests, and course comparisons.',
   ),
   clarezaComunicacao: DimensionSchema.describe(
-    'Clareza, objetividade, adequação de linguagem e ausência de informações contraditórias ao longo do atendimento.',
+    'Clarity, conciseness, appropriate language, and absence of contradictory or duplicated messages.',
   ),
   consistenciaContexto: DimensionSchema.describe(
-    'Capacidade do agente de manter o contexto da conversa, sem ignorar respostas anteriores do cliente nem repetir perguntas já respondidas.',
+    'Ability to retain conversation context without ignoring previous responses or repeating already-answered questions.',
   ),
-
-  scoreGeral: z
-    .number()
-    .min(0)
-    .max(10)
-    .describe(
-      'Média ponderada das seis dimensões. Peso: qualificacaoLead 20%, adequacaoRecomendacao 20%, conducaoConversao 20%, gestaoObjecoes 15%, clarezaComunicacao 15%, consistenciaContexto 10%.',
-    ),
 
   pontosFortes: z
     .array(z.string())
-    .describe('Lista de aspectos positivos identificados no atendimento'),
+    .describe('List of positive aspects identified in the conversation'),
 
   oportunidadesMelhoria: z
     .array(z.string())
-    .describe(
-      'Lista de aspectos que reduzem a qualidade do atendimento e devem ser corrigidos',
-    ),
+    .describe('List of aspects that reduce quality and should be corrected'),
 
   recomendaRevisaoHumana: z
     .boolean()
-    .describe(
-      'true se o atendimento apresenta falhas graves que exigem revisão humana imediata',
-    ),
+    .describe('true if the conversation has critical failures requiring immediate human review'),
 
   motivosRevisao: z
     .array(z.string())
-    .describe(
-      'Razões que justificam revisão humana. Vazio se recomendaRevisaoHumana for false.',
-    ),
+    .describe('Reasons that justify human review. Empty if recomendaRevisaoHumana is false.'),
 
   resumoExecutivo: z
     .string()
-    .describe(
-      'Parágrafo de 2 a 4 frases com o diagnóstico geral do atendimento, incluindo o ponto crítico de melhoria',
-    ),
+    .describe('2 to 4 sentence paragraph with the overall diagnosis, highlighting the most critical improvement point'),
 });
 
-export type QaOutput = z.infer<typeof QaOutputSchema>;
+export type QaLlmOutput = z.infer<typeof QaLlmOutputSchema>;
+
+// Full output returned by the API (includes scoreGeral calculated by the service)
+export type QaOutput = QaLlmOutput & { scoreGeral: number };

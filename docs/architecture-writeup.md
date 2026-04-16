@@ -132,6 +132,40 @@ The schema is designed so that migrating to Option B later requires no breaking 
 
 ---
 
+## Product Integration
+
+Each `QaRecord` is a self-contained analytical unit. The table below maps output fields to concrete product actions:
+
+| Output field | Product action |
+|---|---|
+| `scoreGeral` | Weekly operator ranking dashboard — surfaces top and bottom performers |
+| `recomendaRevisaoHumana: true` | Triggers priority queue for QA analyst review (SLA: same day) |
+| `oportunidadesMelhoria` | Feeds personalised coaching feed per operator version |
+| `gestaoObjecoes.score < 6` | Flags conversation for pricing-script review |
+| `consistenciaContexto.score < 5` | Signals potential context-window issue in the agent's underlying architecture |
+| `conducaoConversao.score` | Correlates with conversion rate — tracked weekly per channel |
+
+### Suggested downstream architecture
+
+```
+POST /qa/evaluate
+        │
+        ▼
+   QaRecord (JSON)
+        │
+   ┌────┴──────────────────────────────────┐
+   ▼                                       ▼
+Analytics store                    Review queue
+(BigQuery / Metabase)         (recomendaRevisaoHumana=true)
+   │                                       │
+   ▼                                       ▼
+Weekly score dashboard          QA analyst inbox
+Operator ranking                Same-day review SLA
+Trend alerts
+```
+
+---
+
 ## Operational Vision
 
 ### Monitoring
@@ -149,7 +183,9 @@ The schema is designed so that migrating to Option B later requires no breaking 
 ### Risks & Mitigations
 | Risk | Mitigation |
 |---|---|
-| Model hallucinates evidence | `temperature: 0`; Zod schema enforces structure; human review flag for borderline cases |
+| Model hallucinates evidence | `temperature: 0`; structured evidence with `messageIndex` enables spot-check; human review flag for borderline cases |
+| Score inflation ("LLM bonzinho") | Hard scoring rules in prompt: score ≥ 8 requires explicit positive evidence; identified flaw caps dimension at 6 |
 | Prompt drift over time | Version the system prompt; keep a changelog in `docs/prompt-documentation.md` |
 | Sensitive data in logs | No conversation content is logged; only `sessionId` and scores are written to records |
 | Latency spikes | OpenAI SDK retries with exponential backoff (configurable via `OPENAI_MAX_RETRIES`) |
+| scoreGeral inconsistency | Weighted average is calculated in code (`qa.service.ts`), not delegated to the LLM — deterministic by design |
