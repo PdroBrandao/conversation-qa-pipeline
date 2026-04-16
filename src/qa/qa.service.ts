@@ -17,26 +17,47 @@ export interface QaRecord extends QaOutput {
   sessionId: string;
   evaluatedAt: string;
   messageCount: number;
+  businessImpact: 'high' | 'medium' | 'low';
+  recommendedAction: 'escalate_for_review' | 'individual_coaching' | 'standard_monitoring' | 'approved';
 }
 
 const SCORE_WEIGHTS = {
-  qualificacaoLead: 0.20,
-  adequacaoRecomendacao: 0.20,
-  conducaoConversao: 0.20,
-  gestaoObjecoes: 0.15,
-  clarezaComunicacao: 0.15,
-  consistenciaContexto: 0.10,
+  leadQualification: 0.20,
+  recommendationFit: 0.20,
+  conversionGuidance: 0.20,
+  objectionHandling: 0.15,
+  communicationClarity: 0.15,
+  contextConsistency: 0.10,
 } as const;
 
-function calcScoreGeral(parsed: QaOutput): number {
+function calcOverallScore(parsed: QaOutput): number {
   const raw =
-    parsed.qualificacaoLead.score * SCORE_WEIGHTS.qualificacaoLead +
-    parsed.adequacaoRecomendacao.score * SCORE_WEIGHTS.adequacaoRecomendacao +
-    parsed.conducaoConversao.score * SCORE_WEIGHTS.conducaoConversao +
-    parsed.gestaoObjecoes.score * SCORE_WEIGHTS.gestaoObjecoes +
-    parsed.clarezaComunicacao.score * SCORE_WEIGHTS.clarezaComunicacao +
-    parsed.consistenciaContexto.score * SCORE_WEIGHTS.consistenciaContexto;
+    parsed.leadQualification.score * SCORE_WEIGHTS.leadQualification +
+    parsed.recommendationFit.score * SCORE_WEIGHTS.recommendationFit +
+    parsed.conversionGuidance.score * SCORE_WEIGHTS.conversionGuidance +
+    parsed.objectionHandling.score * SCORE_WEIGHTS.objectionHandling +
+    parsed.communicationClarity.score * SCORE_WEIGHTS.communicationClarity +
+    parsed.contextConsistency.score * SCORE_WEIGHTS.contextConsistency;
   return Math.round(raw * 10) / 10;
+}
+
+function calcBusinessImpact(
+  overallScore: number,
+  requiresHumanReview: boolean,
+): 'high' | 'medium' | 'low' {
+  if (requiresHumanReview || overallScore < 6.0) return 'high';
+  if (overallScore < 8.0) return 'medium';
+  return 'low';
+}
+
+function calcRecommendedAction(
+  overallScore: number,
+  requiresHumanReview: boolean,
+): 'escalate_for_review' | 'individual_coaching' | 'standard_monitoring' | 'approved' {
+  if (requiresHumanReview) return 'escalate_for_review';
+  if (overallScore < 6.0) return 'individual_coaching';
+  if (overallScore < 8.0) return 'standard_monitoring';
+  return 'approved';
 }
 
 @Injectable()
@@ -95,8 +116,10 @@ export class QaService {
       );
     }
 
-    // scoreGeral is calculated here — not delegated to the LLM
-    const scoreGeral = calcScoreGeral(parsed as QaOutput);
+    // All derived fields calculated in code — not delegated to the LLM
+    const overallScore = calcOverallScore(parsed as QaOutput);
+    const businessImpact = calcBusinessImpact(overallScore, parsed.requiresHumanReview);
+    const recommendedAction = calcRecommendedAction(overallScore, parsed.requiresHumanReview);
 
     const record: QaRecord = {
       recordId: randomUUID(),
@@ -104,11 +127,13 @@ export class QaService {
       evaluatedAt: new Date().toISOString(),
       messageCount: input.messages.length,
       ...parsed,
-      scoreGeral,
+      overallScore,
+      businessImpact,
+      recommendedAction,
     };
 
     this.persist(record);
-    this.logger.log(`Session ${sessionId} scored ${record.scoreGeral}/10`);
+    this.logger.log(`Session ${sessionId} scored ${record.overallScore}/10`);
 
     return record;
   }

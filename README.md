@@ -46,12 +46,12 @@ POST /qa/evaluate
 
 | Dimension | Weight | What it measures |
 |---|---|---|
-| `qualificacaoLead` | 20% | Needs discovery quality before recommending a course |
-| `adequacaoRecomendacao` | 20% | Fit between course recommendation and lead's stated profile |
-| `conducaoConversao` | 20% | Effectiveness guiding the lead toward a concrete next step |
-| `gestaoObjecoes` | 15% | Handling of price questions, doubts, and repeated requests |
-| `clarezaComunicacao` | 15% | Clarity, conciseness, and language consistency |
-| `consistenciaContexto` | 10% | Context retention across the full conversation |
+| `leadQualification` | 20% | Needs discovery quality before recommending a course |
+| `recommendationFit` | 20% | Fit between course recommendation and lead's stated profile |
+| `conversionGuidance` | 20% | Effectiveness guiding the lead toward a concrete next step |
+| `objectionHandling` | 15% | Handling of price questions, doubts, and repeated requests |
+| `communicationClarity` | 15% | Clarity, conciseness, and language consistency |
+| `contextConsistency` | 10% | Context retention across the full conversation |
 
 `scoreGeral` = weighted average, rounded to one decimal place.
 
@@ -141,20 +141,30 @@ curl -s -X POST http://localhost:3000/qa/evaluate \
   "sessionId": "string",
   "evaluatedAt": "ISO 8601",
   "messageCount": 5,
-  "qualificacaoLead":        { "score": 0-10, "justificativa": "...", "evidencias": ["..."] },
-  "adequacaoRecomendacao":   { "score": 0-10, "justificativa": "...", "evidencias": ["..."] },
-  "conducaoConversao":       { "score": 0-10, "justificativa": "...", "evidencias": ["..."] },
-  "gestaoObjecoes":          { "score": 0-10, "justificativa": "...", "evidencias": ["..."] },
-  "clarezaComunicacao":      { "score": 0-10, "justificativa": "...", "evidencias": ["..."] },
-  "consistenciaContexto":    { "score": 0-10, "justificativa": "...", "evidencias": ["..."] },
-  "scoreGeral": 7.2,
-  "pontosFortes": ["..."],
-  "oportunidadesMelhoria": ["..."],
-  "recomendaRevisaoHumana": false,
-  "motivosRevisao": [],
-  "resumoExecutivo": "..."
+  "leadQualification":    { "score": 0-10, "justification": "...", "evidences": [{ "messageIndex": 3, "speaker": "ai", "excerpt": "..." }] },
+  "recommendationFit":    { "score": 0-10, "justification": "...", "evidences": [...] },
+  "conversionGuidance":   { "score": 0-10, "justification": "...", "evidences": [...] },
+  "objectionHandling":    { "score": 0-10, "justification": "...", "evidences": [...] },
+  "communicationClarity": { "score": 0-10, "justification": "...", "evidences": [...] },
+  "contextConsistency":   { "score": 0-10, "justification": "...", "evidences": [...] },
+  "overallScore": 7.2,
+  "strengths": ["..."],
+  "improvementAreas": ["..."],
+  "requiresHumanReview": false,
+  "reviewReasons": [],
+  "executiveSummary": "...",
+  "businessImpact": "medium",
+  "recommendedAction": "standard_monitoring"
 }
 ```
+
+### Derived fields (calculated in code, not by the LLM)
+
+| Field | Values | Logic |
+|---|---|---|
+| `overallScore` | `0.0–10.0` | Weighted average of 6 dimensions |
+| `businessImpact` | `high` / `medium` / `low` | `high` if `overallScore < 6` or `requiresHumanReview`; `low` if `overallScore ≥ 8` |
+| `recommendedAction` | `escalate_for_review` / `individual_coaching` / `standard_monitoring` / `approved` | Deterministic from `overallScore` + `requiresHumanReview` |
 
 ---
 

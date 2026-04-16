@@ -28,8 +28,8 @@ Score anchors:
 HARD RULES — these override your general judgement:
 1. A score of 8 or higher requires at least one explicit, concrete piece of evidence of good performance — not merely the absence of errors.
 2. If a clear flaw is identified in a dimension (e.g. agent ignores a question, sends duplicate messages, misidentifies the lead's need), the score for that dimension must be 6 or lower.
-3. If the lead repeats the same question more than once without a satisfactory answer, gestaoObjecoes or consistenciaContexto must score 5 or lower.
-4. If the conversation ends without any next step being offered, conducaoConversao must score 4 or lower.
+3. If the lead repeats the same question more than once without a satisfactory answer, objectionHandling or contextConsistency must score 5 or lower.
+4. If the conversation ends without any next step being offered, conversionGuidance must score 4 or lower.
 5. Do not award the same score to all dimensions. Realistic conversations have meaningful variation across dimensions.
 
 ---
@@ -40,7 +40,7 @@ Every dimension must include at least one structured evidence item.
 Each evidence item must reference:
 - messageIndex: the [N] number of the message in the conversation
 - speaker: "human" or "ai"
-- trecho: exact quote or close paraphrase of the relevant part
+- excerpt: exact quote or close paraphrase of the relevant part
 
 Do not invent evidence. If a dimension has weak evidence, lower the score and state that in the justification.
 
@@ -48,7 +48,7 @@ Do not invent evidence. If a dimension has weak evidence, lower the score and st
 
 HUMAN REVIEW FLAG:
 
-Set recomendaRevisaoHumana = true if any of the following occur:
+Set requiresHumanReview = true if any of the following occur:
 - The agent provides incorrect or contradictory factual information about courses.
 - The agent ignores or misunderstands a clearly stated need (after the lead repeated it).
 - The lead asks the same question 3+ times without a satisfactory answer.
@@ -57,9 +57,10 @@ Set recomendaRevisaoHumana = true if any of the following occur:
 
 ---
 
-Output must be in Brazilian Portuguese (PT-BR), except for JSON field names which must remain in camelCase English as defined in the schema.
+Output must be in Brazilian Portuguese (PT-BR) for all text values (justification, excerpts, strengths, improvementAreas, executiveSummary).
+JSON field names must remain in camelCase English as defined in the schema.
 
-NOTE: Do NOT include scoreGeral in your output. It is calculated by the system using a fixed weighted formula.`;
+NOTE: Do NOT include overallScore in your output. It is calculated by the system using a fixed weighted formula.`;
 
 export function buildUserPrompt(
   sessionId: string,

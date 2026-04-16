@@ -61,23 +61,31 @@ Validated via Zod + OpenAI `zodResponseFormat`. The schema is passed to the API 
 
 ```
 QaRecord
-├── recordId            string (uuid)
-├── sessionId           string
-├── evaluatedAt         ISO 8601
-├── messageCount        number
-├── qualificacaoLead    Dimension
-├── adequacaoRecomendacao  Dimension
-├── conducaoConversao   Dimension
-├── gestaoObjecoes      Dimension
-├── clarezaComunicacao  Dimension
-├── consistenciaContexto  Dimension
-│     (each Dimension has: score 0-10, justificativa, evidencias[])
-├── scoreGeral          number (0-10, weighted average)
-├── pontosFortes        string[]
-├── oportunidadesMelhoria  string[]
-├── recomendaRevisaoHumana  boolean
-├── motivosRevisao      string[]
-└── resumoExecutivo     string
+├── recordId                string (uuid)
+├── sessionId               string
+├── evaluatedAt             ISO 8601
+├── messageCount            number
+│
+│   — LLM output (text values in PT-BR, validated by Zod) —
+├── leadQualification       Dimension
+├── recommendationFit       Dimension
+├── conversionGuidance      Dimension
+├── objectionHandling       Dimension
+├── communicationClarity    Dimension
+├── contextConsistency      Dimension
+│     each Dimension:  { score 0-10, justification, evidences[] }
+│     each Evidence:   { messageIndex, speaker: "human"|"ai", excerpt }
+├── strengths               string[]
+├── improvementAreas        string[]
+├── requiresHumanReview     boolean
+├── reviewReasons           string[]
+├── executiveSummary        string
+│
+│   — Derived fields (calculated in QaService, not by the LLM) —
+├── overallScore            number (weighted average, 1 decimal place)
+├── businessImpact          "high" | "medium" | "low"
+└── recommendedAction       "escalate_for_review" | "individual_coaching"
+                            | "standard_monitoring" | "approved"
 ```
 
 ---

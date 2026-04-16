@@ -1,198 +1,317 @@
 [
   {
-    "recordId": "d5f52f3f-15ae-4feb-b591-d2c21416b3ca",
+    "recordId": "517e2497-5110-4617-afa4-f649a341b0e4",
     "sessionId": "S_cb815acb",
-    "evaluatedAt": "2026-04-15T23:55:10.439Z",
+    "evaluatedAt": "2026-04-16T14:01:36.959Z",
     "messageCount": 14,
-    "qualificacaoLead": {
+    "leadQualification": {
       "score": 8,
-      "justificativa": "Beatriz fez perguntas relevantes para entender o perfil e os objetivos do lead, como a formação e a atuação na área de educação inclusiva. Isso demonstra um bom esforço para qualificar o lead antes de recomendar um curso.",
-      "evidencias": [
-        "Vi que você tem interesse em uma pós-graduação. Você já tem algum curso em mente ou gostaria de ajuda para escolher?",
-        "Posso te perguntar qual sua área de formação ou atuação para entender como essa especialização pode ajudar nos seus objetivos?",
-        "Só para confirmar, quando você respondeu 'sim', está dizendo que já atua ou tem formação na área de educação inclusiva? Assim consigo te direcionar melhor."
+      "justification": "Beatriz fez perguntas relevantes para entender o perfil do lead, como a formação e a atuação na área de educação inclusiva, o que ajudou a qualificar a conversa. Ela também fez uma pergunta específica sobre desafios ou objetivos, demonstrando interesse em alinhar a recomendação ao perfil do lead.",
+      "evidences": [
+        {
+          "messageIndex": 4,
+          "speaker": "ai",
+          "excerpt": "Posso te perguntar qual sua área de formação ou atuação para entender como essa especialização pode ajudar nos seus objetivos?"
+        },
+        {
+          "messageIndex": 9,
+          "speaker": "ai",
+          "excerpt": "Tem algum desafio específico ou objetivo que te motivou a buscar o curso de TEA, TDAH e Inclusão?"
+        }
       ]
     },
-    "adequacaoRecomendacao": {
+    "recommendationFit": {
       "score": 9,
-      "justificativa": "A recomendação do curso de TEA, TDAH e Inclusão foi adequada ao perfil do lead, que é diretora escolar e possui formação em pedagogia e gestão escolar. Beatriz alinhou a recomendação com os interesses e a experiência do lead.",
-      "evidencias": [
-        "Temos uma pós em 'TEA, TDAH e Inclusão: Saúde, Família e Sociedade', que pode ser relevante para esse campo.",
-        "A pós em TEA, TDAH e Inclusão: Saúde, Família e Sociedade aprofunda o olhar sobre políticas inclusivas, a integração de talentos neurodiversos, e prepara gestores para construir estratégias efetivas junto a equipes e famílias."
+      "justification": "A recomendação do curso de TEA, TDAH e Inclusão foi bem alinhada com o perfil do lead, que é diretora escolar e possui formação em pedagogia e gestão escolar. Beatriz destacou como a especialização pode ajudar a promover práticas inclusivas, o que é relevante para o lead.",
+      "evidences": [
+        {
+          "messageIndex": 11,
+          "speaker": "ai",
+          "excerpt": "A pós em TEA, TDAH e Inclusão: Saúde, Família e Sociedade aprofunda o olhar sobre políticas inclusivas, a integração de talentos neurodiversos, e prepara gestores para construir estratégias efetivas."
+        }
       ]
     },
-    "conducaoConversao": {
-      "score": 7,
-      "justificativa": "Beatriz conduziu a conversa de forma a levar o lead a um próximo passo, oferecendo-se para ajudar com a matrícula. No entanto, não houve um fechamento claro sobre a matrícula, pois o lead estava ocupado e não confirmou um próximo contato.",
-      "evidencias": [
-        "Se quiser, posso te orientar para os próximos passos e os detalhes da matrícula.",
-        "Assim que estiver pronta, é só me chamar aqui para conversarmos sobre dúvidas ou sobre o processo de matrícula."
-      ]
-    },
-    "gestaoObjecoes": {
+    "conversionGuidance": {
       "score": 6,
-      "justificativa": "Beatriz não abordou diretamente a questão do preço, que é uma objeção comum. Embora tenha mencionado que poderia tirar dúvidas sobre valor, não houve uma transferência para um especialista, o que poderia ter sido feito para melhor gestão dessa objeção.",
-      "evidencias": [
-        "Se quiser seguir para inscrição ou tirar dúvidas pontuais sobre valor, prazo ou formas de ingresso, me avise que já te passo as próximas orientações."
+      "justification": "Embora Beatriz tenha oferecido a opção de prosseguir com o cadastro e tenha mencionado a possibilidade de tirar dúvidas sobre a matrícula, a conversa não avançou para um próximo passo concreto, pois o lead não se comprometeu a seguir com a matrícula imediatamente.",
+      "evidences": [
+        {
+          "messageIndex": 11,
+          "speaker": "ai",
+          "excerpt": "Se quiser, posso te orientar para os próximos passos e os detalhes da matrícula."
+        },
+        {
+          "messageIndex": 14,
+          "speaker": "ai",
+          "excerpt": "Assim que estiver pronta, é só me chamar aqui para conversarmos sobre dúvidas ou sobre o processo de matrícula."
+        }
       ]
     },
-    "clarezaComunicacao": {
-      "score": 8,
-      "justificativa": "A comunicação de Beatriz foi clara e objetiva, utilizando uma linguagem adequada ao contexto. No entanto, algumas repetições e a falta de um fechamento mais firme sobre a matrícula podem ter gerado um leve ruído na comunicação.",
-      "evidencias": [
-        "Ótimo saber que você é diretora escolar! Muitos profissionais de gestão na educação buscam essa especialização para promover práticas mais inclusivas nas escolas.",
-        "Deixo aberto para avançarmos juntos quando for o melhor momento para você."
-      ]
-    },
-    "consistenciaContexto": {
+    "objectionHandling": {
       "score": 7,
-      "justificativa": "Beatriz manteve o contexto da conversa, mas houve uma leve confusão quando o lead respondeu 'sim' e 'não' em relação à formação em educação inclusiva. Isso poderia ter sido melhor esclarecido para evitar mal-entendidos.",
-      "evidencias": [
-        "Só para confirmar, quando você respondeu 'sim', está dizendo que já atua ou tem formação na área de educação inclusiva? Assim consigo te direcionar melhor.",
-        "Não. Sim para o interesse nesse curso."
+      "justification": "Beatriz lidou bem com as dúvidas do lead e ofereceu informações relevantes sobre o curso. No entanto, não houve uma abordagem direta para lidar com a questão do tempo que o lead levaria para assistir ao vídeo, o que poderia ser uma objeção à continuidade da conversa.",
+      "evidences": [
+        {
+          "messageIndex": 12,
+          "speaker": "ai",
+          "excerpt": "Se quiser seguir para inscrição ou tirar dúvidas pontuais sobre valor, prazo ou formas de ingresso, me avise que já te passo as próximas orientações."
+        }
       ]
     },
-    "scoreGeral": 7.5,
-    "pontosFortes": [
+    "communicationClarity": {
+      "score": 8,
+      "justification": "A comunicação de Beatriz foi clara e concisa, utilizando uma linguagem apropriada e evitando mensagens contraditórias. As informações sobre o curso foram apresentadas de forma organizada, embora algumas partes pudessem ser mais diretas.",
+      "evidences": [
+        {
+          "messageIndex": 12,
+          "speaker": "ai",
+          "excerpt": "Essa pós-graduação trabalha temas como neurodesenvolvimento, políticas públicas de inclusão, estratégias para integração de alunos neurodivergentes e o papel da família e da escola."
+        }
+      ]
+    },
+    "contextConsistency": {
+      "score": 7,
+      "justification": "Beatriz manteve a consistência no contexto da conversa, referindo-se corretamente ao interesse do lead e suas qualificações. No entanto, houve um pequeno deslize ao não reconhecer imediatamente que o lead não tinha formação em educação inclusiva, o que poderia ter sido mais claro.",
+      "evidences": [
+        {
+          "messageIndex": 10,
+          "speaker": "human",
+          "excerpt": "Não . Sim para o interesse nesse curso"
+        }
+      ]
+    },
+    "strengths": [
       "Beatriz fez perguntas relevantes para entender o perfil do lead.",
-      "A recomendação do curso foi adequada ao perfil e interesses do lead.",
-      "A comunicação foi clara e objetiva."
+      "A recomendação do curso foi bem alinhada com a formação e atuação do lead.",
+      "A comunicação foi clara e organizada."
     ],
-    "oportunidadesMelhoria": [
-      "Melhorar a gestão de objeções, especialmente em relação ao preço, transferindo leads para um especialista quando necessário.",
-      "Fechar a conversa com um próximo passo mais claro e firme sobre a matrícula."
+    "improvementAreas": [
+      "A conversa não avançou para um próximo passo concreto.",
+      "Poderia ter abordado melhor a objeção sobre o tempo que o lead levaria para assistir ao vídeo."
     ],
-    "recomendaRevisaoHumana": false,
-    "motivosRevisao": [],
-    "resumoExecutivo": "A conversa foi bem conduzida, com Beatriz demonstrando habilidade em qualificar o lead e recomendar um curso adequado. No entanto, a gestão de objeções e o fechamento da conversa poderiam ser aprimorados para garantir um próximo passo mais claro."
+    "requiresHumanReview": false,
+    "reviewReasons": [],
+    "executiveSummary": "A conversa foi bem conduzida, com Beatriz demonstrando habilidade em qualificar o lead e recomendar um curso adequado. No entanto, a falta de um próximo passo concreto e a abordagem de objeções poderiam ser melhoradas.",
+    "overallScore": 7.6,
+    "businessImpact": "medium",
+    "recommendedAction": "standard_monitoring"
   },
   {
-    "recordId": "308a467e-244c-4061-9fa1-203546251d7b",
+    "recordId": "aa19bcff-9209-46fa-9196-c858346589d0",
     "sessionId": "S_dc7d6256",
-    "evaluatedAt": "2026-04-15T23:55:21.951Z",
+    "evaluatedAt": "2026-04-16T14:01:54.056Z",
     "messageCount": 25,
-    "qualificacaoLead": {
-      "score": 9,
-      "justificativa": "Beatriz fez perguntas relevantes para entender o perfil e os objetivos do lead, como a busca por crescimento na carreira e a atuação atual na área de desenvolvimento humano.",
-      "evidencias": [
-        "Você está buscando essa pós-graduação para crescer na sua carreira atual, migrar de área ou desenvolver novas habilidades pessoais?",
-        "Hoje você já atua em algum segmento relacionado a desenvolvimento humano, ou busca aplicar esses conhecimentos de forma mais ampla na sua profissão?"
-      ]
-    },
-    "adequacaoRecomendacao": {
-      "score": 9,
-      "justificativa": "As recomendações de cursos foram bem alinhadas com o perfil e os interesses do lead, considerando sua experiência como mastercoach e analista comportamental.",
-      "evidencias": [
-        "considerando sua experiência como mastercoach e analista comportamental, o curso de Saúde Mental e Desenvolvimento Humano tem base científica, foco prático e aborda temas atuais como neurociência, psicologia positiva, autoconhecimento, mindfulness, saúde emocional e as conexões do trabalho com saúde mental e desenvolvimento humano."
-      ]
-    },
-    "conducaoConversao": {
+    "leadQualification": {
       "score": 8,
-      "justificativa": "Beatriz conduziu a conversa de forma a levar o lead a um próximo passo, oferecendo a transferência para um especialista para discutir preços, mas poderia ter reforçado mais a urgência ou a importância de seguir com a matrícula.",
-      "evidencias": [
-        "Posso te conectar com um especialista que irá te informar todos os detalhes do investimento para as três pós-graduações. Posso fazer essa transferência agora?"
+      "justification": "Beatriz fez perguntas relevantes para entender melhor o perfil e os objetivos do lead, como a busca por crescimento na carreira e a aplicação de conhecimentos em desenvolvimento humano. Isso ajudou a qualificar o lead de forma eficaz antes de recomendar um curso.",
+      "evidences": [
+        {
+          "messageIndex": 4,
+          "speaker": "ai",
+          "excerpt": "Você está buscando essa pós-graduação para crescer na sua carreira atual, migrar de área ou desenvolver novas habilidades pessoais?"
+        },
+        {
+          "messageIndex": 6,
+          "speaker": "ai",
+          "excerpt": "Hoje você já atua em algum segmento relacionado a desenvolvimento humano, ou busca aplicar esses conhecimentos de forma mais ampla na sua profissão?"
+        }
       ]
     },
-    "gestaoObjecoes": {
+    "recommendationFit": {
+      "score": 9,
+      "justification": "A recomendação do curso de Saúde Mental e Desenvolvimento Humano foi bem alinhada com a experiência do lead como mastercoach e analista comportamental. Beatriz também fez uma comparação clara entre os cursos, ajudando o lead a entender as opções disponíveis.",
+      "evidences": [
+        {
+          "messageIndex": 10,
+          "speaker": "ai",
+          "excerpt": "O curso de Saúde Mental e Desenvolvimento Humano tem base científica, foco prático e aborda temas atuais como neurociência, psicologia positiva, autoconhecimento, mindfulness."
+        },
+        {
+          "messageIndex": 17,
+          "speaker": "ai",
+          "excerpt": "Ambas têm temas em comum, como neurociência, psicologia positiva, mindfulness, hábitos saudáveis e performance humana, mas cada uma tem um foco específico."
+        }
+      ]
+    },
+    "conversionGuidance": {
+      "score": 6,
+      "justification": "Embora Beatriz tenha oferecido a transferência para um especialista para discutir preços, a conversa não incluiu um próximo passo claro após a análise das grades, o que poderia ter sido mais proativo.",
+      "evidences": [
+        {
+          "messageIndex": 25,
+          "speaker": "ai",
+          "excerpt": "Posso te conectar com um especialista que irá te informar todos os detalhes do investimento para as três pós-graduações."
+        },
+        {
+          "messageIndex": 24,
+          "speaker": "ai",
+          "excerpt": "Fico à disposição caso surja alguma dúvida específica ao comparar as grades ou se desejar avançar com a matrícula."
+        }
+      ]
+    },
+    "objectionHandling": {
+      "score": 7,
+      "justification": "Beatriz lidou bem com as perguntas do lead sobre as diferenças entre os cursos, fornecendo informações detalhadas. No entanto, a questão sobre preços não foi respondida diretamente, o que pode ser considerado uma falha na gestão de objeções.",
+      "evidences": [
+        {
+          "messageIndex": 19,
+          "speaker": "ai",
+          "excerpt": "Neurociência Aplicada: Produtividade e Performance Humana foca em estratégias de alta performance, produtividade, neuroética."
+        },
+        {
+          "messageIndex": 24,
+          "speaker": "ai",
+          "excerpt": "Fico à disposição caso surja alguma dúvida específica ao comparar as grades."
+        }
+      ]
+    },
+    "communicationClarity": {
       "score": 8,
-      "justificativa": "Beatriz lidou bem com a objeção sobre preços, oferecendo uma solução ao conectar o lead com um especialista, mas poderia ter abordado a questão de forma mais proativa antes da pergunta do lead.",
-      "evidencias": [
-        "os valores dos cursos não estão disponíveis diretamente aqui, mas posso te conectar com um especialista que irá te informar todos os detalhes do investimento para as três pós-graduações."
+      "justification": "A comunicação de Beatriz foi clara e concisa, com explicações bem estruturadas sobre os cursos. No entanto, houve um pequeno erro de digitação na mensagem do lead que poderia ter sido corrigido.",
+      "evidences": [
+        {
+          "messageIndex": 10,
+          "speaker": "ai",
+          "excerpt": "O curso de Saúde Mental e Desenvolvimento Humano tem base científica, foco prático e aborda temas atuais."
+        },
+        {
+          "messageIndex": 17,
+          "speaker": "ai",
+          "excerpt": "Ambas têm temas em comum, como neurociência, psicologia positiva, mindfulness."
+        }
       ]
     },
-    "clarezaComunicacao": {
-      "score": 9,
-      "justificativa": "A comunicação foi clara e objetiva, com explicações detalhadas sobre os cursos e suas diferenças, sem informações contraditórias.",
-      "evidencias": [
-        "Neurociência Aplicada: Produtividade e Performance Humana foca em estratégias de alta performance, produtividade, neuroética, comportamento de consumo, inteligência emocional e adaptação de hábitos para ambientes profissionais, liderança e inovação."
+    "contextConsistency": {
+      "score": 8,
+      "justification": "Beatriz manteve a consistência no contexto da conversa, referindo-se corretamente às informações fornecidas pelo lead e fazendo perguntas relevantes. No entanto, a repetição de perguntas sobre a área de interesse poderia ter sido evitada.",
+      "evidences": [
+        {
+          "messageIndex": 12,
+          "speaker": "ai",
+          "excerpt": "Só para confirmar: quando você disse \"*area\", quis dizer que deseja crescer profissionalmente na área de desenvolvimento humano?"
+        },
+        {
+          "messageIndex": 10,
+          "speaker": "ai",
+          "excerpt": "Considerando sua experiência como mastercoach e analista comportamental."
+        }
       ]
     },
-    "consistenciaContexto": {
-      "score": 9,
-      "justificativa": "Beatriz manteve o contexto da conversa, referindo-se a informações previamente discutidas e evitando repetições desnecessárias.",
-      "evidencias": [
-        "Só para confirmar: quando você disse \"*area\", quis dizer que deseja crescer profissionalmente na área de desenvolvimento humano e atuar cada vez mais nesse segmento?"
-      ]
-    },
-    "scoreGeral": 8.4,
-    "pontosFortes": [
+    "strengths": [
       "Beatriz fez perguntas relevantes para entender o perfil e os objetivos do lead.",
-      "As recomendações de cursos foram bem alinhadas com o perfil e os interesses do lead.",
-      "A comunicação foi clara e objetiva, com explicações detalhadas sobre os cursos."
+      "As recomendações de cursos foram bem alinhadas com a experiência do lead.",
+      "A comunicação foi clara e as informações sobre os cursos foram bem estruturadas."
     ],
-    "oportunidadesMelhoria": [
-      "Poderia ter reforçado mais a urgência ou a importância de seguir com a matrícula após a apresentação dos cursos.",
-      "A abordagem sobre preços poderia ter sido mais proativa antes da pergunta do lead."
+    "improvementAreas": [
+      "A conversa poderia ter incluído um próximo passo mais claro após a análise das grades.",
+      "A questão sobre preços não foi respondida diretamente, o que pode causar frustração no lead."
     ],
-    "recomendaRevisaoHumana": false,
-    "motivosRevisao": [],
-    "resumoExecutivo": "A conversa foi bem conduzida, com Beatriz demonstrando habilidade em qualificar o lead e recomendar cursos adequados. A comunicação foi clara e objetiva, mas há oportunidades de melhoria na condução da conversão e na gestão de objeções."
+    "requiresHumanReview": false,
+    "reviewReasons": [],
+    "executiveSummary": "A conversa foi bem conduzida, com Beatriz demonstrando habilidade em qualificar o lead e recomendar cursos adequados. No entanto, a falta de um próximo passo claro e a não resposta direta sobre preços são áreas que precisam de melhoria.",
+    "overallScore": 7.7,
+    "businessImpact": "medium",
+    "recommendedAction": "standard_monitoring"
   },
   {
-    "recordId": "20e3c9e9-edc4-4f88-96ee-e2515d37f94c",
+    "recordId": "11c075b9-6a0a-4dd1-b62c-bd7ed5a27c35",
     "sessionId": "S_f72ec490",
-    "evaluatedAt": "2026-04-15T23:55:38.090Z",
+    "evaluatedAt": "2026-04-16T14:02:05.728Z",
     "messageCount": 24,
-    "qualificacaoLead": {
+    "leadQualification": {
       "score": 8,
-      "justificativa": "Beatriz fez perguntas relevantes para entender o perfil e os objetivos do lead, como a área de atuação e o motivo para a especialização. Isso demonstra uma boa qualificação do lead.",
-      "evidencias": [
-        "Você já atua em alguma área específica ou tem um objetivo profissional em mente com essa especialização?",
-        "Você busca se especializar por algum motivo específico, como crescimento na carreira, transição de área ou requisitos profissionais?"
+      "justification": "Beatriz fez perguntas relevantes para entender o perfil e os objetivos do lead, como a área de interesse e o motivo para a especialização. Isso ajudou a qualificar o lead de forma eficaz.",
+      "evidences": [
+        {
+          "messageIndex": 4,
+          "speaker": "ai",
+          "excerpt": "você já atua em alguma área específica ou tem um objetivo profissional em mente com essa especialização?"
+        },
+        {
+          "messageIndex": 8,
+          "speaker": "ai",
+          "excerpt": "você busca se especializar por algum motivo específico, como crescimento na carreira, transição de área ou requisitos profissionais?"
+        }
       ]
     },
-    "adequacaoRecomendacao": {
+    "recommendationFit": {
       "score": 9,
-      "justificativa": "A recomendação do curso de Gestão de Risco, Compliance e Auditoria foi adequada ao perfil e objetivos do lead, que busca crescimento na carreira nessa área.",
-      "evidencias": [
-        "Perfeito, seu interesse é na pós-graduação em Gestão de Risco, Compliance e Auditoria.",
-        "Considerando seu objetivo de crescimento na carreira, vou te apresentar os detalhes do curso de Pós-graduação em Gestão de Risco, Compliance e Auditoria:"
+      "justification": "A recomendação do curso de Gestão de Risco, Compliance e Auditoria foi bem alinhada com os interesses e objetivos do lead, que busca crescimento na carreira nessa área.",
+      "evidences": [
+        {
+          "messageIndex": 10,
+          "speaker": "ai",
+          "excerpt": "vou te apresentar os detalhes do curso de Pós-graduação em Gestão de Risco, Compliance e Auditoria"
+        }
       ]
     },
-    "conducaoConversao": {
-      "score": 8,
-      "justificativa": "Beatriz conduziu a conversa de forma eficaz, levando o lead a expressar interesse em se matricular e solicitando informações necessárias para a matrícula.",
-      "evidencias": [
-        "Gostaria de garantir sua vaga para começar nessa data?",
-        "Para avançar com sua matrícula na turma de Gestão de Risco, Compliance e Auditoria que inicia em 11/03, preciso que você me informe seu CPF e sua data de nascimento."
+    "conversionGuidance": {
+      "score": 6,
+      "justification": "Embora Beatriz tenha tentado avançar para a matrícula, a conversa não incluiu um fechamento claro sobre a próxima etapa após a solicitação de informações pessoais, o que poderia ter sido mais direto.",
+      "evidences": [
+        {
+          "messageIndex": 14,
+          "speaker": "ai",
+          "excerpt": "preciso que você me informe seu CPF e sua data de nascimento"
+        }
       ]
     },
-    "gestaoObjecoes": {
+    "objectionHandling": {
+      "score": 5,
+      "justification": "Beatriz não conseguiu responder de forma satisfatória às perguntas repetidas do lead sobre os dias das aulas ao vivo, o que gerou frustração e falta de clareza.",
+      "evidences": [
+        {
+          "messageIndex": 18,
+          "speaker": "ai",
+          "excerpt": "mas não especifica em quais dias da semana elas são realizadas"
+        },
+        {
+          "messageIndex": 20,
+          "speaker": "ai",
+          "excerpt": "não detalha se as datas específicas das aulas ao vivo são estabelecidas ao fechar a turma"
+        }
+      ]
+    },
+    "communicationClarity": {
       "score": 7,
-      "justificativa": "Beatriz respondeu às perguntas do lead, mas não conseguiu fornecer informações específicas sobre os dias das aulas ao vivo, o que pode ser considerado uma falha na gestão de objeções.",
-      "evidencias": [
-        "As aulas ao vivo da pós em Gestão de Risco, Compliance e Auditoria acontecem das 19h30 às 21h, mas não especifica em quais dias da semana elas são realizadas.",
-        "O material institucional não detalha se as datas específicas das aulas ao vivo são estabelecidas ao fechar a turma."
+      "justification": "A comunicação foi clara na maioria das partes, mas houve algumas repetições e falta de clareza em respostas sobre a programação das aulas, o que poderia ser melhorado.",
+      "evidences": [
+        {
+          "messageIndex": 22,
+          "speaker": "ai",
+          "excerpt": "o calendário detalhado das aulas ao vivo é disponibilizado na plataforma acadêmica após a matrícula"
+        }
       ]
     },
-    "clarezaComunicacao": {
-      "score": 8,
-      "justificativa": "A comunicação foi clara e objetiva, com informações bem estruturadas sobre o curso e o processo de matrícula, embora algumas respostas sobre as aulas ao vivo não tenham sido suficientemente claras.",
-      "evidencias": [
-        "As aulas ao vivo da pós em Gestão de Risco, Compliance e Auditoria acontecem das 19h30 às 21h.",
-        "O material institucional não define dias fixos, pois o calendário detalhado das aulas ao vivo é disponibilizado na plataforma acadêmica após a matrícula."
+    "contextConsistency": {
+      "score": 6,
+      "justification": "Embora Beatriz tenha mantido o contexto da conversa, a repetição de perguntas do lead sobre os dias das aulas sem uma resposta clara indica uma falha em manter a consistência no contexto.",
+      "evidences": [
+        {
+          "messageIndex": 17,
+          "speaker": "human",
+          "excerpt": "Ao vivo em quais dias da semana?"
+        },
+        {
+          "messageIndex": 21,
+          "speaker": "human",
+          "excerpt": "mas gostaria de saber como me programar para as aulas ao vivo"
+        }
       ]
     },
-    "consistenciaContexto": {
-      "score": 7,
-      "justificativa": "Beatriz manteve o contexto da conversa, mas houve repetição de perguntas e algumas respostas não foram suficientemente informativas, o que pode ter causado confusão.",
-      "evidencias": [
-        "As aulas ao vivo da pós em Gestão de Risco, Compliance e Auditoria acontecem das 19h30 às 21h, e caso você não consiga participar no horário, elas ficam gravadas para você acessar depois.",
-        "O material institucional não detalha se as datas específicas das aulas ao vivo são estabelecidas ao fechar a turma da pós em Gestão de Risco, Compliance e Auditoria."
-      ]
-    },
-    "scoreGeral": 7.7,
-    "pontosFortes": [
+    "strengths": [
       "Beatriz fez perguntas relevantes para entender o perfil e os objetivos do lead.",
-      "A recomendação do curso foi adequada ao perfil do lead.",
-      "A comunicação foi clara e objetiva."
+      "A recomendação do curso foi bem alinhada com os interesses do lead."
     ],
-    "oportunidadesMelhoria": [
-      "Melhorar a gestão de objeções, especialmente em relação a informações sobre as aulas ao vivo.",
-      "Fornecer informações mais detalhadas sobre a programação das aulas ao vivo."
+    "improvementAreas": [
+      "Melhorar a clareza e a precisão nas respostas sobre a programação das aulas ao vivo.",
+      "Oferecer um fechamento mais claro sobre a próxima etapa após a solicitação de informações pessoais."
     ],
-    "recomendaRevisaoHumana": false,
-    "motivosRevisao": [],
-    "resumoExecutivo": "A conversa foi bem conduzida, com Beatriz qualificando adequadamente o lead e recomendando um curso pertinente. No entanto, houve falhas na gestão de objeções e na clareza sobre a programação das aulas ao vivo, o que pode impactar a experiência do lead."
+    "requiresHumanReview": false,
+    "reviewReasons": [],
+    "executiveSummary": "A conversa foi eficaz em qualificar o lead e recomendar um curso adequado, mas falhou em fornecer informações claras sobre a programação das aulas ao vivo, o que gerou frustração. Melhorias na clareza das respostas e no fechamento da conversa são necessárias.",
+    "overallScore": 7,
+    "businessImpact": "medium",
+    "recommendedAction": "standard_monitoring"
   }
 ]

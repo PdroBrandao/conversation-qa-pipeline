@@ -138,12 +138,14 @@ Each `QaRecord` is a self-contained analytical unit. The table below maps output
 
 | Output field | Product action |
 |---|---|
-| `scoreGeral` | Weekly operator ranking dashboard — surfaces top and bottom performers |
-| `recomendaRevisaoHumana: true` | Triggers priority queue for QA analyst review (SLA: same day) |
-| `oportunidadesMelhoria` | Feeds personalised coaching feed per operator version |
-| `gestaoObjecoes.score < 6` | Flags conversation for pricing-script review |
-| `consistenciaContexto.score < 5` | Signals potential context-window issue in the agent's underlying architecture |
-| `conducaoConversao.score` | Correlates with conversion rate — tracked weekly per channel |
+| `overallScore` | Weekly operator ranking dashboard — surfaces top and bottom performers |
+| `requiresHumanReview: true` | Triggers priority queue for QA analyst review (SLA: same day) |
+| `businessImpact: "high"` | Escalates to supervisor; feeds into risk reporting |
+| `recommendedAction` | Routes record to correct downstream workflow without human triage |
+| `improvementAreas` | Feeds personalised coaching feed per operator version |
+| `objectionHandling.score < 6` | Flags conversation for pricing-script review |
+| `contextConsistency.score < 5` | Signals potential context-window issue in the agent's underlying architecture |
+| `conversionGuidance.score` | Correlates with conversion rate — tracked weekly per channel |
 
 ### Suggested downstream architecture
 
@@ -183,7 +185,7 @@ Trend alerts
 ### Risks & Mitigations
 | Risk | Mitigation |
 |---|---|
-| Model hallucinates evidence | `temperature: 0`; structured evidence with `messageIndex` enables spot-check; human review flag for borderline cases |
+| Model hallucinates evidence | `temperature: 0`; structured `evidences` with `messageIndex` + `excerpt` enables spot-check; `requiresHumanReview` flag for borderline cases |
 | Score inflation ("LLM bonzinho") | Hard scoring rules in prompt: score ≥ 8 requires explicit positive evidence; identified flaw caps dimension at 6 |
 | Prompt drift over time | Version the system prompt; keep a changelog in `docs/prompt-documentation.md` |
 | Sensitive data in logs | No conversation content is logged; only `sessionId` and scores are written to records |
